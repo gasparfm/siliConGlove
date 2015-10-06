@@ -1,0 +1,6 @@
+[submodule "glove"]
+	path = glove
+	url = https://github.com/gasparfm/glove
+[submodule "silicon"]
+	path = silicon
+	url = https://github.com/gasparfm/silicon
