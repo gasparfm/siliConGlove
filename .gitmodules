@@ -4,3 +4,6 @@
 [submodule "silicon"]
 	path = silicon
 	url = https://github.com/gasparfm/silicon
+[submodule "startbootstrap-landing-page"]
+	path = startbootstrap-landing-page
+	url = https://github.com/IronSummitMedia/startbootstrap-landing-page.git
