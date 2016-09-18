@@ -69,6 +69,7 @@ void setupSiliconGlobals()
   SiliconWeb::load();
   SiliconWeb::cssUrl("css");
   SiliconWeb::jsUrl("js");
+  Silicon::setMaxBufferLenGlobal(65535);
   /* Don't render JS and CSS immediately */
   Silicon::setGlobalKeyword("TwitterLink", "https://twitter.com/gasparfm");
   Silicon::setGlobalKeyword("GithubLink", "https://github.com/gasparfm/siliConGlove");
@@ -89,11 +90,11 @@ int main(int argc, char *argv[])
   serv.addVhost("testing");
   serv.addRoute("/hello/$anycon/$anything", hello);
   namespace ph = std::placeholders;
-  serv.addRoute("/css/$filename", std::bind(GloveHttpServer::fileServerExt, std::placeholders::_1, std::placeholders::_2, "resources/css/"));
-  serv.addRoute("/fonts/css/$filename", std::bind(GloveHttpServer::fileServerExt, std::placeholders::_1, std::placeholders::_2, "resources/fonts/css/"));
-  serv.addRoute("/fonts/fonts/$filename", std::bind(GloveHttpServer::fileServerExt, std::placeholders::_1, std::placeholders::_2, "resources/fonts/fonts/"));
-  serv.addRoute("/js/$filename", std::bind(GloveHttpServer::fileServerExt, std::placeholders::_1, std::placeholders::_2, "resources/js/"));
-  serv.addRoute("/img/$filename", std::bind(GloveHttpServer::fileServerExt, std::placeholders::_1, std::placeholders::_2, "resources/images/"));
+  serv.addRoute("/css/$filename", std::bind(GloveHttpServer::fileServerExt, ph::_1, ph::_2, "resources/css/"));
+  serv.addRoute("/fonts/css/$filename", std::bind(GloveHttpServer::fileServerExt, ph::_1, ph::_2, "resources/fonts/css/"));
+  serv.addRoute("/fonts/fonts/$filename", std::bind(GloveHttpServer::fileServerExt, ph::_1, ph::_2, "resources/fonts/fonts/"));
+  serv.addRoute("/js/$filename", std::bind(GloveHttpServer::fileServerExt, ph::_1, ph::_2, "resources/js/"));
+  serv.addRoute("/img/$filename", std::bind(GloveHttpServer::fileServerExt, ph::_1, ph::_2, "resources/images/"));
    //  serv.addRoute("/css/$filename", GloveHttpServer::fileServer);
   /* serv.addRoute("/files/$filename/", GloveHttpServer::fileServer, "testing"); */
   serv.addRoute("/", webIndex);
